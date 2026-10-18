@@ -30,14 +30,15 @@
         .level-icon { width: 36px; height: 36px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; }
         .arrow-icon { color: #A3AED0; font-size: 16px; margin-left: 10px; }
 
-        .btn-start { width: 100%; background: #2461E4; color: white; border: none; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background 0.2s; text-align: center; }
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
-        /* تنسيق قسم حماية الكود والدفع */
+        /* شاشة إدخال الكود الحصري */
         .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
         .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
-        .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
+        
+        /* صندوق الحساب البنكي السري للموثوقين فقط */
+        .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
         .whatsapp-btn { display: block; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 10px; }
 
         .item-card { border: 1px solid #E9EDF7; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
@@ -67,7 +68,7 @@
             <div class="level-info">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <span class="level-name">Collège</span>
-                    <div class="level-icon">🎓</div>
+                    <div class="level-icon">📚</div>
                 </div>
                 <span class="level-sub">1AC · 2AC · 3AC</span>
             </div>
@@ -79,13 +80,13 @@
             <div class="level-info">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <span class="level-name">Lycée</span>
-                    <div class="level-icon">📚</div>
+                    <div class="level-icon">🎓</div>
                 </div>
                 <span class="level-sub">Trunc commun · 1BAC · 2BAC</span>
             </div>
         </div>
 
-        <!-- Espace VIP / Premium (ينتقل مباشرة لشاشة الكود والدفع) -->
+        <!-- Espace VIP (يطلب القن السري أولاً لإخفاء تفاصيل الدفع عن العشوائيين) -->
         <div class="level-card vip-card" onclick="openVipLock()">
             <div style="display: flex; align-items: center;"><span class="arrow-icon">🔒</span></div>
             <div class="level-info">
@@ -98,25 +99,40 @@
         </div>
     </div>
 
-    <!-- شاشة إدخال كود التفعيل والدفع البنكي (الصفحة الثانية المباشرة للـ VIP) -->
+    <!-- خطوة 1: شاشة طلب القن السري فقط (التي تظهر فور الضغط على VIP) -->
     <div id="screen-vip-lock" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title">👑 Espace VIP / Premium</h2>
-        <p class="welcome-desc">هذا القسم مدفوع ومخصص للدروس الحصرية. قم بتحويل رسوم الاشتراك عبر الحساب البنكي أدناه ثم تواصل معنا للحصول على كود التفعيل.</p>
+        <p class="welcome-desc">هذا القسم خاص بالمشتركين. أدخل القن السري (Code d'accès) للولوج إلى الدروس الحصرية:</p>
+        
+        <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل القن السري هنا...">
+        <button class="btn-unlock" onclick="checkVipCode()">تأكيد القن السري</button>
+
+        <a href="https://wa.me/212600000000?text=Bonjour%20Professeur,%20je%20souhaite%20obtenir%20le%20code%20d'accès%20pour%20l'Espace%20VIP." target="_blank" class="whatsapp-btn">
+            💬 طلب القن السري عبر الواتساب
+        </a>
+    </div>
+
+    <!-- خطوة 2: شاشة المحتوى السري والحساب البنكي (لا تظهر إلا بعد إدخال القن الصحيح) -->
+    <div id="screen-vip-secret" class="hidden">
+        <button class="btn-back" onclick="showWelcome()">← Retour</button>
+        <h2 class="welcome-title" style="color: #B8860B;">⭐ مرحباً بك في Espace VIP (خاص بالمشتركين)</h2>
+        <p class="welcome-desc">لقد تم التحقق من هويتك بنجاح. إليك تفاصيل الحساب البنكي والملفات الحصرية:</p>
         
         <div class="bank-info-box">
-            <strong>💳 معلومات الحساب البنكي (RIB):</strong><br>
+            <strong>💳 معلومات التحويل البنكي (سرية خاصة بالمشتركين):</strong><br>
             البنك: <span>CIH Bank / Attijariwafa</span><br>
-            رقم الحساب: <span>230XXXXXXXXXXXXXXXXXX</span><br>
+            رقم الحساب (RIB): <span>230XXXXXXXXXXXXXXXXXX</span><br>
             اسم المستفيد: <span>Boumaazah</span>
         </div>
 
-        <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل كود التفعيل هنا...">
-        <button class="btn-unlock" onclick="checkVipCode()">تأكيد الكود والولوج</button>
-
-        <a href="https://wa.me/212600000000?text=Bonjour%20Professeur,%20j'ai%20effectué%20le%20virement%20bancaire%20pour%20l'Espace%20VIP." target="_blank" class="whatsapp-btn">
-            💬 إرسال وصل التحويل عبر الواتساب للحصول على الكود
-        </a>
+        <div class="level-card" onclick="selectVipCategories()">
+            <span class="arrow-icon">›</span>
+            <div class="level-info">
+                <span class="level-name">الدروس والتمارين الحصرية</span>
+                <span class="level-sub">الملفات المتقدمة بصيغة PDF</span>
+            </div>
+        </div>
     </div>
 
     <!-- شاشة اختيار المستويات العادية (Collège / Lycée) -->
@@ -167,7 +183,7 @@
         { title: 'التمارين المصححة (Exercices VIP)', sub: 'سلاسل تمارين مع التصحيح المفصل', icon: '📝' }
     ];
 
-    // كود التفعيل السري الخاص بالقسم المدفوع (يمكنك تغييره هنا)
+    // القن السري الخاص بالقسم (يمكنك تغييره هنا متى أردت)
     const SECRET_VIP_CODE = "VIP2026";
 
     function showWelcome() {
@@ -183,17 +199,18 @@
     function checkVipCode() {
         const input = document.getElementById('vip-code-input').value;
         if (input === SECRET_VIP_CODE) {
-            alert('تم قبول الكود بنجاح! مرحباً بك في Espace VIP.');
-            selectVipCategories();
+            alert('تم تأكيد القن السري بنجاح!');
+            hideAll();
+            document.getElementById('screen-vip-secret').classList.remove('hidden');
         } else {
-            alert('الكود غير صحيح! يرجى التأكد من إتمام التحويل البنكي والتواصل عبر الواتساب.');
+            alert('القن السري غير صحيح! تواصل مع الأستاذ للحصول على القن.');
         }
     }
 
     function selectVipCategories() {
         hideAll();
         document.getElementById('screen-categories').classList.remove('hidden');
-        document.getElementById('selected-level-title').innerText = '⭐ Espace VIP / Premium';
+        document.getElementById('selected-level-title').innerText = '⭐ Espace VIP / Fichiers';
 
         const list = document.getElementById('categories-list');
         list.innerHTML = '';
@@ -298,6 +315,7 @@
     function hideAll() {
         document.getElementById('screen-welcome').classList.add('hidden');
         document.getElementById('screen-vip-lock').classList.add('hidden');
+        document.getElementById('screen-vip-secret').classList.add('hidden');
         document.getElementById('screen-levels').classList.add('hidden');
         document.getElementById('screen-categories').classList.add('hidden');
         document.getElementById('screen-pdfs').classList.add('hidden');
