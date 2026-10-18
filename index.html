@@ -34,7 +34,7 @@
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
-        /* عناصر حماية الكود VIP والدفع */
+        /* تنسيق قسم حماية الكود والدفع */
         .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
         .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
         .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
@@ -50,7 +50,7 @@
 
 <div class="app-container">
 
-    <!-- الشاشة الرئيسية -->
+    <!-- الصفحة الرئيسية -->
     <div id="screen-welcome">
         <div class="logo-box">📖</div>
         <h1 class="main-title">Mes cours de maths</h1>
@@ -61,11 +61,9 @@
         <h2 class="welcome-title">Bienvenue !</h2>
         <p class="welcome-desc">Choisis ton niveau scolaire pour accéder aux cours, aux exercices et aux activités de soutien en mathématiques.</p>
 
-        <!-- خيار Collège -->
+        <!-- Collège -->
         <div class="level-card" onclick="selectCycle('college')">
-            <div style="display: flex; align-items: center;">
-                <span class="arrow-icon">›</span>
-            </div>
+            <div style="display: flex; align-items: center;"><span class="arrow-icon">›</span></div>
             <div class="level-info">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <span class="level-name">Collège</span>
@@ -75,11 +73,9 @@
             </div>
         </div>
 
-        <!-- خيار Lycée -->
+        <!-- Lycée -->
         <div class="level-card" onclick="selectCycle('lycee')">
-            <div style="display: flex; align-items: center;">
-                <span class="arrow-icon">›</span>
-            </div>
+            <div style="display: flex; align-items: center;"><span class="arrow-icon">›</span></div>
             <div class="level-info">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <span class="level-name">Lycée</span>
@@ -89,11 +85,9 @@
             </div>
         </div>
 
-        <!-- خيار Espace VIP / Premium المدفوع -->
+        <!-- Espace VIP / Premium (ينتقل مباشرة لشاشة الكود والدفع) -->
         <div class="level-card vip-card" onclick="openVipLock()">
-            <div style="display: flex; align-items: center;">
-                <span class="arrow-icon">🔒</span>
-            </div>
+            <div style="display: flex; align-items: center;"><span class="arrow-icon">🔒</span></div>
             <div class="level-info">
                 <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
                     <span class="level-name" style="color: #B8860B;">Espace VIP / Premium ⭐</span>
@@ -104,7 +98,7 @@
         </div>
     </div>
 
-    <!-- شاشة إدخال كود التفعيل والدفع البنكي -->
+    <!-- شاشة إدخال كود التفعيل والدفع البنكي (الصفحة الثانية المباشرة للـ VIP) -->
     <div id="screen-vip-lock" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title">👑 Espace VIP / Premium</h2>
@@ -125,7 +119,7 @@
         </a>
     </div>
 
-    <!-- صفحة اختيار المستويات العادية (Collège / Lycée) -->
+    <!-- شاشة اختيار المستويات العادية (Collège / Lycée) -->
     <div id="screen-levels" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title" id="cycle-title">Choisis ta classe</h2>
@@ -133,7 +127,7 @@
         <div id="levels-list"></div>
     </div>
 
-    <!-- صفحة الأقسام -->
+    <!-- شاشة الأقسام -->
     <div id="screen-categories" class="hidden">
         <button class="btn-back" onclick="showLevels()">← Retour</button>
         <h2 class="welcome-title" id="selected-level-title">Niveau</h2>
@@ -141,7 +135,7 @@
         <div id="categories-list"></div>
     </div>
 
-    <!-- صفحة عرض وتحميل الملفات -->
+    <!-- شاشة عرض وتحميل الملفات -->
     <div id="screen-pdfs" class="hidden">
         <button class="btn-back" onclick="showCategories()">← Retour</button>
         <h2 class="welcome-title" id="pdf-category-title">Documents</h2>
@@ -168,7 +162,7 @@
         { code: '3AC', name: '3ème année Collège' }
     ];
 
-    const categories = [
+    const vipCategories = [
         { title: 'الدروس الحصرية (Cours VIP)', sub: 'ملفات الشرح المتقدمة', icon: '📖' },
         { title: 'التمارين المصححة (Exercices VIP)', sub: 'سلاسل تمارين مع التصحيح المفصل', icon: '📝' }
     ];
@@ -203,7 +197,7 @@
 
         const list = document.getElementById('categories-list');
         list.innerHTML = '';
-        categories.forEach(cat => {
+        vipCategories.forEach(cat => {
             list.innerHTML += `
                 <div class="level-card" onclick="selectVipPdfs('${cat.title}')">
                     <span class="arrow-icon">›</span>
