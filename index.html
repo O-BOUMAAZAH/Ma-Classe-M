@@ -33,6 +33,7 @@
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
+        /* شاشة القن السري */
         .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
         .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
         .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
@@ -96,11 +97,11 @@
         </div>
     </div>
 
-    <!-- شاشة طلب القن السري -->
+    <!-- شاشة طلب القن السري لـ VIP -->
     <div id="screen-vip-lock" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title">👑 Espace VIP / Premium</h2>
-        <p class="welcome-desc">هذا القسم خاص بالمشتركين. أدخل القن السري للولوج:</p>
+        <p class="welcome-desc">أدخل القن السري الخاص بالمشتركين للولوج:</p>
         
         <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل القن السري هنا...">
         <button class="btn-unlock" onclick="checkVipCode()">تأكيد القن السري</button>
@@ -110,29 +111,30 @@
         </a>
     </div>
 
-    <!-- شاشة المحتوى السري والحساب البنكي للموثوقين -->
+    <!-- شاشة الحساب البنكي والدروس الحصرية VIP -->
     <div id="screen-vip-secret" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
-        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (المشتركين الموثوقين)</h2>
-        <p class="welcome-desc">إليك معلومات الحساب البنكي والملفات الحصرية الخاصة بك:</p>
+        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (مشترك موثوق)</h2>
+        <p class="welcome-desc">إليك معلومات التحويل والملفات الخاصة:</p>
         
         <div class="bank-info-box">
-            <strong>💳 معلومات التحويل البنكي (سرية):</strong><br>
+            <strong>💳 معلومات الحساب البنكي (سرية):</strong><br>
             البنك: <span>CIH Bank / Attijariwafa</span><br>
             رقم الحساب (RIB): <span>230XXXXXXXXXXXXXXXXXX</span><br>
             اسم المستفيد: <span>Boumaazah</span>
         </div>
 
-        <div class="level-card" onclick="selectVipCategories()">
+        <div class="level-card" onclick="selectVipContent('cours')">
             <span class="arrow-icon">›</span>
-            <div class="level-info">
-                <span class="level-name">الدروس والتمارين الحصرية VIP</span>
-                <span class="level-sub">الملفات المتقدمة</span>
-            </div>
+            <div class="level-info"><span class="level-name">الدروس الحصرية VIP</span><span class="level-sub">Cours VIP</span></div>
+        </div>
+        <div class="level-card" onclick="selectVipContent('exercices')">
+            <span class="arrow-icon">›</span>
+            <div class="level-info"><span class="level-name">التمارين الحصرية VIP</span><span class="level-sub">Exercices VIP</span></div>
         </div>
     </div>
 
-    <!-- شاشة اختيار المستويات العادية -->
+    <!-- شاشة اختيار المستويات -->
     <div id="screen-levels" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title" id="cycle-title">Choisis ta classe</h2>
@@ -140,7 +142,7 @@
         <div id="levels-list"></div>
     </div>
 
-    <!-- شاشة الأقسام (دروس، تمارين، فروض) -->
+    <!-- شاشة الأقسام للمستوى المحدد (دروس / تمارين / فروض) -->
     <div id="screen-categories" class="hidden">
         <button class="btn-back" onclick="showLevels()">← Retour</button>
         <h2 class="welcome-title" id="selected-level-title">Niveau</h2>
@@ -148,9 +150,9 @@
         <div id="categories-list"></div>
     </div>
 
-    <!-- شاشة عرض وتحميل الملفات -->
+    <!-- شاشة عرض الملفات الخاصة بالمستوى -->
     <div id="screen-pdfs" class="hidden">
-        <button class="btn-back" onclick="showCategories()">← Retour</button>
+        <button class="btn-back" onclick="selectLevel(currentLevelKey)">← Retour</button>
         <h2 class="welcome-title" id="pdf-category-title">Documents</h2>
         <br>
         <div id="pdfs-list"></div>
@@ -161,22 +163,78 @@
 <script>
     const lyceeLevels = [
         { code: 'TCSF', name: 'Tronc commun scientifique (BIOF)' },
-        { code: 'TCLF', name: 'Tronc commun littéraire' },
-        { code: '1BACSF', name: '1BAC Sciences Expérimentales' },
-        { code: '1BACL', name: '1BAC Lettres et Sc. Humaines' },
-        { code: '2BACSF', name: '2BAC Sciences Physiques / SVT' },
-        { code: '2BACSMF', name: '2BAC Sciences Mathématiques' },
-        { code: '2BACLF', name: '2BAC Lettres et Sc. Humaines' }
+        { code: '1BACSEF', name: '1BAC Sciences Expérimentales' },
+        { code: '2BACPC', name: '2BAC Sciences Physiques' }
     ];
 
     const collegeLevels = [
-        { code: '1AC', name: '1ère année Collège' },
-        { code: '2AC', name: '2ème année Collège' },
         { code: '3AC', name: '3ème année Collège' }
     ];
 
-    // القن السري الخاص بالقسم المدفوع
     const SECRET_VIP_CODE = "VIP2026";
+    let currentLevelKey = '';
+
+    // ==========================================
+    // قاعدة بيانات المحتوى حسب كل مستوى دراسي على حدة
+    // يمكنك تعديل الروابط (Google Drive أو روابط محلية) بسهولة هنا
+    // ==========================================
+    const dbData = {
+        'TCSF': {
+            cours: [
+                { title: 'Cours 1: Ensemble des nombres entiers naturels IN et Notions en Arithmétique', url: 'https://drive.google.com/file/d/1a4pFJMj7XCGpe42opbGPmLvDSPwldslh/view?usp=drive_link' },
+                { title: 'Cours 2: Calcul vectoriel dans le plan', url: '#' }
+            ],
+            exercices: [
+                { title: 'Série 1: Arithmétique et Ensembles', url: '#' }
+            ],
+            devoirs: [
+                { title: 'Devoir 1 - Semestre 1', url: '#' }
+            ]
+        },
+        '1BACSEF': {
+            cours: [
+                { title: 'Cours 1: Notions en logique', url: 'https://drive.google.com/file/d/1-zf9phSVXixHbDRyU2MouNQ0I9vY0bjd/view?usp=drive_link' },
+                { title: 'Cours 2: Généralités sur les fonctions', url: '#' }
+            ],
+            exercices: [
+                { title: 'Série 1: Logique et Ensembles', url: '#' }
+            ],
+            devoirs: [
+                { title: 'Devoir 1 - 1BAC Sciences', url: '#' }
+            ]
+        },
+        '2BACPC': {
+            cours: [
+                { title: 'Cours 1: Limites et continuité', url: '#' }
+            ],
+            exercices: [
+                { title: 'Série d\'exercices: Continuité', url: '#' }
+            ],
+            devoirs: [
+                { title: 'Examen Blanc N°1', url: '#' }
+            ]
+        },
+        '3AC': {
+            cours: [
+                { title: 'Cours 1: Théorème de Thalès et Pythagore', url: '#' }
+            ],
+            exercices: [
+                { title: 'Série d\'exercices N°1 - Collège', url: '#' }
+            ],
+            devoirs: [
+                { title: 'Devoir libre N°1', url: '#' }
+            ]
+        },
+        // قسم VIP الخاص
+        'VIP': {
+            cours: [
+                { title: 'الدرس الحصري المتقدم - VIP', url: '#' }
+            ],
+            exercices: [
+                { title: 'تمارين محلولة بالتفصيل - VIP', url: '#' }
+            ]
+        }
+    };
 
     function showWelcome() {
         hideAll();
@@ -199,54 +257,22 @@
         }
     }
 
-    // أقسام الـ VIP الحصرية
-    function selectVipCategories() {
-        hideAll();
-        document.getElementById('screen-categories').classList.remove('hidden');
-        document.getElementById('selected-level-title').innerText = '⭐ Espace VIP / Fichiers';
-
-        const list = document.getElementById('categories-list');
-        list.innerHTML = `
-            <div class="level-card" onclick="selectVipPdfs('الدروس الحصرية VIP')">
-                <span class="arrow-icon">›</span>
-                <div class="level-info">
-                    <span class="level-name">الدروس الحصرية (Cours VIP)</span>
-                    <span class="level-sub">ملفات الشرح المتقدمة</span>
-                </div>
-            </div>
-            <div class="level-card" onclick="selectVipPdfs('التمارين المصححة VIP')">
-                <span class="arrow-icon">›</span>
-                <div class="level-info">
-                    <span class="level-name">التمارين المصححة (Exercices VIP)</span>
-                    <span class="level-sub">سلاسل تمارين مع التصحيح المفصل</span>
-                </div>
-            </div>
-        `;
-    }
-
-    // هنا تضع روابط ملفات الـ VIP الخاصة بك
-    function selectVipPdfs(title) {
+    function selectVipContent(type) {
+        currentLevelKey = 'VIP';
         hideAll();
         document.getElementById('screen-pdfs').classList.remove('hidden');
-        document.getElementById('pdf-category-title').innerText = title;
+        document.getElementById('pdf-category-title').innerText = type === 'cours' ? 'الدروس الحصرية (VIP)' : 'التمارين الحصرية (VIP)';
 
         const list = document.getElementById('pdfs-list');
-        list.innerHTML = `
-            <div class="item-card">
-                <a href="Lesson1.pdf" target="_blank" class="btn-download">Télécharger</a>
-                <div style="text-align: right;">
-                    <div class="item-title">Support Exclusif VIP 1</div>
-                    <div class="item-sub">Format PDF</div>
-                </div>
-            </div>
-            <div class="item-card">
-                <a href="Serie1 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
-                <div style="text-align: right;">
-                    <div class="item-title">Série VIP Exercices Corrigés</div>
-                    <div class="item-sub">Format PDF</div>
-                </div>
-            </div>
-        `;
+        list.innerHTML = '';
+        
+        dbData['VIP'][type].forEach(item => {
+            list.innerHTML += `
+                <div class="item-card">
+                    <a href="${item.url}" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">${item.title}</div><div class="item-sub">Format PDF</div></div>
+                </div>`;
+        });
     }
 
     function selectCycle(cycle) {
@@ -262,10 +288,7 @@
             list.innerHTML += `
                 <div class="level-card" onclick="selectLevel('${lvl.code}')">
                     <span class="arrow-icon">›</span>
-                    <div class="level-info">
-                        <span class="level-name">${lvl.code}</span>
-                        <span class="level-sub">${lvl.name}</span>
-                    </div>
+                    <div class="level-info"><span class="level-name">${lvl.code}</span><span class="level-sub">${lvl.name}</span></div>
                 </div>`;
         });
     }
@@ -275,71 +298,47 @@
         document.getElementById('screen-levels').classList.remove('hidden');
     }
 
-    // أقسام المستويات العادية (دروس، تمارين، فروض)
     function selectLevel(code) {
+        currentLevelKey = code;
         hideAll();
         document.getElementById('screen-categories').classList.remove('hidden');
         document.getElementById('selected-level-title').innerText = 'Niveau: ' + code;
 
         const list = document.getElementById('categories-list');
         list.innerHTML = `
-            <div class="level-card" onclick="selectCategory('الدروس (Cours)')">
+            <div class="level-card" onclick="showPdfs('cours', 'الدروس (Cours)')">
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">الدروس (Cours)</span><span class="level-sub">ملفات الشرح وملخصات القواعد</span></div>
+                <div class="level-info"><span class="level-name">الدروس (Cours)</span><span class="level-sub">الملفات الأساسية للمستوى</span></div>
             </div>
-            <div class="level-card" onclick="selectCategory('التمارين (Exercices)')">
+            <div class="level-card" onclick="showPdfs('exercices', 'التمارين (Exercices)')">
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">التمارين (Exercices)</span><span class="level-sub">سلاسل التمارين مع الحلول المقترحة</span></div>
+                <div class="level-info"><span class="level-name">التمارين (Exercices)</span><span class="level-sub">سلاسل التمارين المصححة</span></div>
             </div>
-            <div class="level-card" onclick="selectCategory('الفروض (Devoirs)')">
+            <div class="level-card" onclick="showPdfs('devoirs', 'الفروض (Devoirs)')">
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">الفروض (Devoirs)</span><span class="level-sub">الفروض المنزلية والمحروسة</span></div>
-            </div>
-        `;
+                <div class="level-info"><span class="level-name">الفروض (Devoirs)</span><span class="level-sub">الفروض المحروسة والمنزلية</span></div>
+            </div>`;
     }
 
-    function showCategories() {
-        hideAll();
-        document.getElementById('screen-categories').classList.remove('hidden');
-    }
-
-    // هنا تضع روابط الملفات العادية للمستويات (Collège & Lycée)
-    function selectCategory(title) {
+    function showPdfs(categoryType, categoryTitle) {
         hideAll();
         document.getElementById('screen-pdfs').classList.remove('hidden');
-        document.getElementById('pdf-category-title').innerText = title;
+        document.getElementById('pdf-category-title').innerText = categoryTitle + ' - ' + currentLevelKey;
 
         const list = document.getElementById('pdfs-list');
-        
-        if (title.includes('الدروس')) {
-            list.innerHTML = `
-                <div class="item-card">
-                    <a href="Lesson1.pdf" target="_blank" class="btn-download">Télécharger</a>
-                    <div style="text-align: right;"><div class="item-title">الدرس الأول (Cours 1)</div><div class="item-sub">PDF</div></div>
-                </div>
-                <div class="item-card">
-                    <a href="Lesson2.pdf" target="_blank" class="btn-download">Télécharger</a>
-                    <div style="text-align: right;"><div class="item-title">الدرس الثاني (Cours 2)</div><div class="item-sub">PDF</div></div>
-                </div>
-            `;
-        } else if (title.includes('التمارين')) {
-            list.innerHTML = `
-                <div class="item-card">
-                    <a href="Serie1 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
-                    <div style="text-align: right;"><div class="item-title">سلسلة التمارين 1 (Série 1)</div><div class="item-sub">PDF</div></div>
-                </div>
-                <div class="item-card">
-                    <a href="Serie2 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
-                    <div style="text-align: right;"><div class="item-title">سلسلة التمارين 2 (Série 2)</div><div class="item-sub">PDF</div></div>
-                </div>
-            `;
+        list.innerHTML = '';
+
+        const items = dbData[currentLevelKey][categoryType];
+        if (items && items.length > 0) {
+            items.forEach(item => {
+                list.innerHTML += `
+                    <div class="item-card">
+                        <a href="${item.url}" target="_blank" class="btn-download">Télécharger</a>
+                        <div style="text-align: right;"><div class="item-title">${item.title}</div><div class="item-sub">PDF</div></div>
+                    </div>`;
+            });
         } else {
-            list.innerHTML = `
-                <div class="item-card">
-                    <a href="Devoir 1.pdf" target="_blank" class="btn-download">Télécharger</a>
-                    <div style="text-align: right;"><div class="item-title">الفرض المحروس 1 (Devoir 1)</div><div class="item-sub">PDF</div></div>
-                </div>
-            `;
+            list.innerHTML = `<p style="text-align:center; color:#A3AED0;">Aucun document disponible pour le moment.</p>`;
         }
     }
 
