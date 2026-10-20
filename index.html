@@ -33,11 +33,8 @@
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
-        /* شاشة إدخال الكود الحصري */
         .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
         .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
-        
-        /* صندوق الحساب البنكي السري للموثوقين فقط */
         .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
         .whatsapp-btn { display: block; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 10px; }
 
@@ -86,7 +83,7 @@
             </div>
         </div>
 
-        <!-- Espace VIP (يطلب القن السري أولاً لإخفاء تفاصيل الدفع عن العشوائيين) -->
+        <!-- Espace VIP -->
         <div class="level-card vip-card" onclick="openVipLock()">
             <div style="display: flex; align-items: center;"><span class="arrow-icon">🔒</span></div>
             <div class="level-info">
@@ -99,27 +96,28 @@
         </div>
     </div>
 
-    <!-- خطوة 1: شاشة طلب القن السري فقط (التي تظهر فور الضغط على VIP) -->
+    <!-- شاشة طلب القن السري -->
     <div id="screen-vip-lock" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
-        <h2 class="welcome-title">👑 Espace VIP / Premium</h2> .هذا المحتوى مخصص للمشتركين، أدخل كلمة المرور  </p>
+        <h2 class="welcome-title">👑 Espace VIP / Premium</h2>
+        <p class="welcome-desc">هذا القسم خاص بالمشتركين. أدخل القن السري للولوج:</p>
         
-        <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل كلمة المرور هنا...">
-        <button class="btn-unlock" onclick="checkVipCode()"> تأكيد كلمة المرور.</button>
+        <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل القن السري هنا...">
+        <button class="btn-unlock" onclick="checkVipCode()">تأكيد القن السري</button>
 
         <a href="https://wa.me/212600000000?text=Bonjour%20Professeur,%20je%20souhaite%20obtenir%20le%20code%20d'accès%20pour%20l'Espace%20VIP." target="_blank" class="whatsapp-btn">
             💬 طلب القن السري عبر الواتساب
         </a>
     </div>
 
-    <!-- خطوة 2: شاشة المحتوى السري والحساب البنكي (لا تظهر إلا بعد إدخال القن الصحيح) -->
+    <!-- شاشة المحتوى السري والحساب البنكي للموثوقين -->
     <div id="screen-vip-secret" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
-        <h2 class="welcome-title" style="color: #B8860B;">⭐ مرحباً بك في Espace VIP (خاص بالمشتركين)</h2>
-        <p class="welcome-desc">لقد تم التحقق من هويتك بنجاح. إليك تفاصيل الحساب البنكي والملفات الحصرية:</p>
+        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (المشتركين الموثوقين)</h2>
+        <p class="welcome-desc">إليك معلومات الحساب البنكي والملفات الحصرية الخاصة بك:</p>
         
         <div class="bank-info-box">
-            <strong>💳 معلومات التحويل البنكي (سرية خاصة بالمشتركين):</strong><br>
+            <strong>💳 معلومات التحويل البنكي (سرية):</strong><br>
             البنك: <span>CIH Bank / Attijariwafa</span><br>
             رقم الحساب (RIB): <span>230XXXXXXXXXXXXXXXXXX</span><br>
             اسم المستفيد: <span>Boumaazah</span>
@@ -128,13 +126,13 @@
         <div class="level-card" onclick="selectVipCategories()">
             <span class="arrow-icon">›</span>
             <div class="level-info">
-                <span class="level-name">الدروس والتمارين الحصرية</span>
-                <span class="level-sub">الملفات المتقدمة بصيغة PDF</span>
+                <span class="level-name">الدروس والتمارين الحصرية VIP</span>
+                <span class="level-sub">الملفات المتقدمة</span>
             </div>
         </div>
     </div>
 
-    <!-- شاشة اختيار المستويات العادية (Collège / Lycée) -->
+    <!-- شاشة اختيار المستويات العادية -->
     <div id="screen-levels" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title" id="cycle-title">Choisis ta classe</h2>
@@ -142,7 +140,7 @@
         <div id="levels-list"></div>
     </div>
 
-    <!-- شاشة الأقسام -->
+    <!-- شاشة الأقسام (دروس، تمارين، فروض) -->
     <div id="screen-categories" class="hidden">
         <button class="btn-back" onclick="showLevels()">← Retour</button>
         <h2 class="welcome-title" id="selected-level-title">Niveau</h2>
@@ -177,12 +175,7 @@
         { code: '3AC', name: '3ème année Collège' }
     ];
 
-    const vipCategories = [
-        { title: 'الدروس الحصرية (Cours VIP)', sub: 'ملفات الشرح المتقدمة', icon: '📖' },
-        { title: 'التمارين المصححة (Exercices VIP)', sub: 'سلاسل تمارين مع التصحيح المفصل', icon: '📝' }
-    ];
-
-    // القن السري الخاص بالقسم (يمكنك تغييره هنا متى أردت)
+    // القن السري الخاص بالقسم المدفوع
     const SECRET_VIP_CODE = "VIP2026";
 
     function showWelcome() {
@@ -202,29 +195,36 @@
             hideAll();
             document.getElementById('screen-vip-secret').classList.remove('hidden');
         } else {
-            alert('القن السري غير صحيح! تواصل مع الأستاذ للحصول على القن.');
+            alert('القن السري غير صحيح!');
         }
     }
 
+    // أقسام الـ VIP الحصرية
     function selectVipCategories() {
         hideAll();
         document.getElementById('screen-categories').classList.remove('hidden');
         document.getElementById('selected-level-title').innerText = '⭐ Espace VIP / Fichiers';
 
         const list = document.getElementById('categories-list');
-        list.innerHTML = '';
-        vipCategories.forEach(cat => {
-            list.innerHTML += `
-                <div class="level-card" onclick="selectVipPdfs('${cat.title}')">
-                    <span class="arrow-icon">›</span>
-                    <div class="level-info">
-                        <span class="level-name">${cat.title}</span>
-                        <span class="level-sub">${cat.sub}</span>
-                    </div>
-                </div>`;
-        });
+        list.innerHTML = `
+            <div class="level-card" onclick="selectVipPdfs('الدروس الحصرية VIP')">
+                <span class="arrow-icon">›</span>
+                <div class="level-info">
+                    <span class="level-name">الدروس الحصرية (Cours VIP)</span>
+                    <span class="level-sub">ملفات الشرح المتقدمة</span>
+                </div>
+            </div>
+            <div class="level-card" onclick="selectVipPdfs('التمارين المصححة VIP')">
+                <span class="arrow-icon">›</span>
+                <div class="level-info">
+                    <span class="level-name">التمارين المصححة (Exercices VIP)</span>
+                    <span class="level-sub">سلاسل تمارين مع التصحيح المفصل</span>
+                </div>
+            </div>
+        `;
     }
 
+    // هنا تضع روابط ملفات الـ VIP الخاصة بك
     function selectVipPdfs(title) {
         hideAll();
         document.getElementById('screen-pdfs').classList.remove('hidden');
@@ -233,12 +233,20 @@
         const list = document.getElementById('pdfs-list');
         list.innerHTML = `
             <div class="item-card">
-                <a href="#" target="_blank" class="btn-download">Télécharger</a>
+                <a href="Lesson1.pdf" target="_blank" class="btn-download">Télécharger</a>
                 <div style="text-align: right;">
-                    <div class="item-title">Support Exclusif VIP - Cours & Examens</div>
-                    <div class="item-sub">2026 | Format PDF</div>
+                    <div class="item-title">Support Exclusif VIP 1</div>
+                    <div class="item-sub">Format PDF</div>
                 </div>
-            </div>`;
+            </div>
+            <div class="item-card">
+                <a href="Serie1 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
+                <div style="text-align: right;">
+                    <div class="item-title">Série VIP Exercices Corrigés</div>
+                    <div class="item-sub">Format PDF</div>
+                </div>
+            </div>
+        `;
     }
 
     function selectCycle(cycle) {
@@ -267,27 +275,27 @@
         document.getElementById('screen-levels').classList.remove('hidden');
     }
 
+    // أقسام المستويات العادية (دروس، تمارين، فروض)
     function selectLevel(code) {
         hideAll();
         document.getElementById('screen-categories').classList.remove('hidden');
         document.getElementById('selected-level-title').innerText = 'Niveau: ' + code;
 
         const list = document.getElementById('categories-list');
-        list.innerHTML = '';
-        const normalCategories = [
-            { title: 'الدروس (Cours)', sub: 'ملفات الشرح وملخصات القواعد' },
-            { title: 'التمارين (Exercices)', sub: 'سلاسل التمارين مع الحلول المقترحة' }
-        ];
-        normalCategories.forEach(cat => {
-            list.innerHTML += `
-                <div class="level-card" onclick="selectCategory('${cat.title}')">
-                    <span class="arrow-icon">›</span>
-                    <div class="level-info">
-                        <span class="level-name">${cat.title}</span>
-                        <span class="level-sub">${cat.sub}</span>
-                    </div>
-                </div>`;
-        });
+        list.innerHTML = `
+            <div class="level-card" onclick="selectCategory('الدروس (Cours)')">
+                <span class="arrow-icon">›</span>
+                <div class="level-info"><span class="level-name">الدروس (Cours)</span><span class="level-sub">ملفات الشرح وملخصات القواعد</span></div>
+            </div>
+            <div class="level-card" onclick="selectCategory('التمارين (Exercices)')">
+                <span class="arrow-icon">›</span>
+                <div class="level-info"><span class="level-name">التمارين (Exercices)</span><span class="level-sub">سلاسل التمارين مع الحلول المقترحة</span></div>
+            </div>
+            <div class="level-card" onclick="selectCategory('الفروض (Devoirs)')">
+                <span class="arrow-icon">›</span>
+                <div class="level-info"><span class="level-name">الفروض (Devoirs)</span><span class="level-sub">الفروض المنزلية والمحروسة</span></div>
+            </div>
+        `;
     }
 
     function showCategories() {
@@ -295,20 +303,44 @@
         document.getElementById('screen-categories').classList.remove('hidden');
     }
 
+    // هنا تضع روابط الملفات العادية للمستويات (Collège & Lycée)
     function selectCategory(title) {
         hideAll();
         document.getElementById('screen-pdfs').classList.remove('hidden');
         document.getElementById('pdf-category-title').innerText = title;
 
         const list = document.getElementById('pdfs-list');
-        list.innerHTML = `
-            <div class="item-card">
-                <a href="#" target="_blank" class="btn-download">Télécharger</a>
-                <div style="text-align: right;">
-                    <div class="item-title">Document de cours - Standard</div>
-                    <div class="item-sub">2026 | PDF</div>
+        
+        if (title.includes('الدروس')) {
+            list.innerHTML = `
+                <div class="item-card">
+                    <a href="Lesson1.pdf" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">الدرس الأول (Cours 1)</div><div class="item-sub">PDF</div></div>
                 </div>
-            </div>`;
+                <div class="item-card">
+                    <a href="Lesson2.pdf" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">الدرس الثاني (Cours 2)</div><div class="item-sub">PDF</div></div>
+                </div>
+            `;
+        } else if (title.includes('التمارين')) {
+            list.innerHTML = `
+                <div class="item-card">
+                    <a href="Serie1 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">سلسلة التمارين 1 (Série 1)</div><div class="item-sub">PDF</div></div>
+                </div>
+                <div class="item-card">
+                    <a href="Serie2 Exercice.pdf" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">سلسلة التمارين 2 (Série 2)</div><div class="item-sub">PDF</div></div>
+                </div>
+            `;
+        } else {
+            list.innerHTML = `
+                <div class="item-card">
+                    <a href="Devoir 1.pdf" target="_blank" class="btn-download">Télécharger</a>
+                    <div style="text-align: right;"><div class="item-title">الفرض المحروس 1 (Devoir 1)</div><div class="item-sub">PDF</div></div>
+                </div>
+            `;
+        }
     }
 
     function hideAll() {
