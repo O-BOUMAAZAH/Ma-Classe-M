@@ -19,18 +19,19 @@
         .welcome-title { font-size: 18px; font-weight: 700; color: #1B2559; text-align: center; margin-bottom: 8px; }
         .welcome-desc { font-size: 13px; color: #707EAE; text-align: center; margin-bottom: 24px; line-height: 1.5; }
         
-        /* ضبط البطاقات محاذاة لليسار LTR */
+        /* تنسيق بطاقات الاختيار لضمان محاذاة صحيحة من اليسار لليمين */
         .level-card { border: 1.5px solid #E9EDF7; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: left; }
         .level-card:hover { border-color: #4318FF; background: #F8F9FF; }
         .vip-card { border: 2px solid #FFD700; background: #FFFDF0; }
         .vip-card:hover { border-color: #E6B800; background: #FFF9D6; }
 
+        .card-content { display: flex; align-items: center; gap: 14px; width: 100%; }
         .level-info { display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; }
-        .level-header { display: flex; align-items: center; justify-content: flex-start; gap: 8px; width: 100%; }
-        .level-name { font-size: 15px; font-weight: 700; color: #1B2559; text-align: left; }
+        .level-name { font-size: 15px; font-weight: 700; color: #1B2559; text-align: left; line-height: 1.4; }
         .level-sub { font-size: 12px; color: #A3AED0; margin-top: 2px; text-align: left; }
-        .level-icon { width: 36px; height: 36px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; flex-shrink: 0; }
-        .arrow-icon { color: #A3AED0; font-size: 16px; margin-right: 10px; }
+        
+        .level-icon { width: 40px; height: 40px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; flex-shrink: 0; }
+        .arrow-icon { color: #A3AED0; font-size: 18px; font-weight: bold; flex-shrink: 0; margin-left: 10px; }
 
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
@@ -40,7 +41,7 @@
         .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left; font-size: 13px; color: #2B3674; line-height: 1.6; }
         .whatsapp-btn { display: block; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 10px; }
 
-        /* ضبط بطاقة الدرس والمستند محاذاة لليسار */
+        /* تنسيق بطاقات الملفات والدروس */
         .item-card { border: 1px solid #E9EDF7; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; gap: 12px; }
         .item-info { text-align: left; flex-grow: 1; }
         .item-title { font-size: 14px; font-weight: 600; color: #1B2559; text-align: left; line-height: 1.4; }
@@ -65,10 +66,10 @@
 
         <!-- Collège -->
         <div class="level-card" onclick="selectCycle('college')">
-            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+            <div class="card-content">
                 <div class="level-icon">🎓</div>
                 <div class="level-info">
-                    <span class="level-name">Collège 📚</span>
+                    <span class="level-name">Collège</span>
                     <span class="level-sub">1AC · 2AC · 3AC</span>
                 </div>
             </div>
@@ -77,10 +78,10 @@
 
         <!-- Lycée qualifiant -->
         <div class="level-card" onclick="selectCycle('lycee')">
-            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+            <div class="card-content">
                 <div class="level-icon">📚</div>
                 <div class="level-info">
-                    <span class="level-name">Lycée qualifiant 🎓</span>
+                    <span class="level-name">Lycée qualifiant</span>
                     <span class="level-sub">TC · 1BAC · 2BAC</span>
                 </div>
             </div>
@@ -89,14 +90,14 @@
 
         <!-- Espace VIP -->
         <div class="level-card vip-card" onclick="openVipLock()">
-            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+            <div class="card-content">
                 <div class="level-icon" style="background: #FFE680;">👑</div>
                 <div class="level-info">
                     <span class="level-name" style="color: #B8860B;">Espace VIP / Premium ⭐</span>
                     <span class="level-sub" style="color: #997A00;">Soutien personnalisé & Fichiers exclusifs</span>
                 </div>
             </div>
-            <span class="arrow-icon">🔒</span>
+            <span class="arrow-icon" style="color: #E6B800;">🔒</span>
         </div>
     </div>
 
@@ -128,15 +129,24 @@
         </div>
 
         <div class="level-card" onclick="selectVipContent('cours')">
-            <div class="level-info"><span class="level-name">📙 Cours VIP</span><span class="level-sub">Cours exclusifs</span></div>
+            <div class="card-content">
+                <div class="level-icon">📙</div>
+                <div class="level-info"><span class="level-name">Cours VIP</span><span class="level-sub">Cours exclusifs</span></div>
+            </div>
             <span class="arrow-icon">›</span>
         </div>
         <div class="level-card" onclick="selectVipContent('exercices')">
-            <div class="level-info"><span class="level-name">📝 Exercices VIP</span><span class="level-sub">Séries & Exercices VIP</span></div>
+            <div class="card-content">
+                <div class="level-icon">📝</div>
+                <div class="level-info"><span class="level-name">Exercices VIP</span><span class="level-sub">Séries & Exercices VIP</span></div>
+            </div>
             <span class="arrow-icon">›</span>
         </div>
         <div class="level-card" onclick="selectVipContent('devoirs')">
-            <div class="level-info"><span class="level-name">🏠 Devoir maison VIP</span><span class="level-sub">Devoirs VIP</span></div>
+            <div class="card-content">
+                <div class="level-icon">🏠</div>
+                <div class="level-info"><span class="level-name">Devoir maison VIP</span><span class="level-sub">Devoirs VIP</span></div>
+            </div>
             <span class="arrow-icon">›</span>
         </div>
     </div>
@@ -149,7 +159,7 @@
         <div id="levels-list"></div>
     </div>
 
-    <!-- شاشة الأقسام للمستوى المحدد (Cours / Exercices / Devoir) -->
+    <!-- شاشة الأقسام للمستوى المحدد -->
     <div id="screen-categories" class="hidden">
         <button class="btn-back" onclick="showLevels()">← Retour</button>
         <h2 class="welcome-title" id="selected-level-title">Niveau</h2>
@@ -187,124 +197,36 @@
     const SECRET_VIP_CODE = "VIP2026";
     let currentLevelKey = '';
 
-    // ==========================================
-    // قاعدة البيانات الشاملة المخصصة لكل مستوى
-    // ==========================================
     const dbData = {
-        // Collège
-        '1AC': {
-            cours: [
-                { title: 'Cours 1: Enchaînement d\'opérations', url: '#' },
-                { title: 'Cours 2: Nombres décimaux relatifs', url: '#' }
-            ],
-            exercices: [
-                { title: 'Série 1: Exercices sur les opérations', url: '#' }
-            ],
-            devoirs: [
-                { title: 'Devoir maison N°1 - 1AC', url: '#' }
-            ]
-        },
-        '2AC': {
-            cours: [
-                { title: 'Cours 1: Nombres rationnels', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-        '3AC': {
-            cours: [
-                { title: 'Cours 1: Racines carrées', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-
-        // Lycée - Tronc Commun
+        '1AC': { cours: [], exercices: [], devoirs: [] },
+        '2AC': { cours: [], exercices: [], devoirs: [] },
+        '3AC': { cours: [], exercices: [], devoirs: [] },
         'TCSF': {
             cours: [
                 { title: 'Cours 1: Ensemble des nombres entiers naturels IN et Notions en Arithmétique', url: 'https://drive.google.com/file/d/1-zf9phSVXixHbDRyU2MouNQ0I9vY0bjd/view?usp=drive_link' },
                 { title: 'Cours 2: Les ensembles de nombres', url: '#' },
                 { title: 'Cours 3: Calcul vectoriel dans le plan', url: '#' }
             ],
-            exercices: [
-                { title: 'Série 1: Arithmétique dans IN', url: '#' },
-                { title: 'Série 2: Calcul vectoriel', url: '#' }
-            ],
-            devoirs: [
-                { title: 'Devoir maison N°1 - TCSF', url: '#' },
-                { title: 'Devoir maison N°2 - TCSF', url: '#' }
-            ]
+            exercices: [{ title: 'Série 1: Arithmétique dans IN', url: '#' }],
+            devoirs: [{ title: 'Devoir maison N°1 - TCSF', url: '#' }]
         },
-        'TCLF': {
-            cours: [
-                { title: 'Cours 1: Arithmétique et calcul numérique', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-
-        // Lycée - 1BAC
+        'TCLF': { cours: [], exercices: [], devoirs: [] },
         '1BACSEF': {
             cours: [
                 { title: 'Cours 1: Notions en logique', url: 'https://drive.google.com/file/d/1a4pFJMj7XCGpe42opbGPmLvDSPwldslh/view?usp=drive_link' },
-                { title: 'Cours 2: Généralités sur les fonctions', url: '#' },
-                { title: 'Cours 3: Le barycentre dans le plan', url: '#' }
+                { title: 'Cours 2: Généralités sur les fonctions', url: '#' }
             ],
-            exercices: [
-                { title: 'Série 1: Logique mathématique', url: '#' },
-                { title: 'Série 2: Fonctions numériques', url: '#' }
-            ],
-            devoirs: [
-                { title: 'Devoir maison N°1 - 1BAC SE', url: '#' }
-            ]
+            exercices: [{ title: 'Série 1: Logique mathématique', url: '#' }],
+            devoirs: [{ title: 'Devoir maison N°1 - 1BAC SE', url: '#' }]
         },
-        '1BACSM': {
-            cours: [
-                { title: 'Cours 1: Notions de logique', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-        '1BACL': {
-            cours: [
-                { title: 'Cours 1: Principes de calcul', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-
-        // Lycée - 2BAC
-        '2BACPC_SVT': {
-            cours: [
-                { title: 'Cours 1: Limites et continuité', url: '#' },
-                { title: 'Cours 2: Dérivabilité et étude des fonctions', url: '#' }
-            ],
-            exercices: [
-                { title: 'Série 1: Exercices sur la continuité', url: '#' }
-            ],
-            devoirs: [
-                { title: 'Devoir maison N°1 - 2BAC PC/SVT', url: '#' }
-            ]
-        },
-        '2BACSMA_B': {
-            cours: [
-                { title: 'Cours 1: Continuité d\'une fonction numérique', url: '#' }
-            ],
-            exercices: [],
-            devoirs: []
-        },
-
-        // Espace VIP
+        '1BACSM': { cours: [], exercices: [], devoirs: [] },
+        '1BACL': { cours: [], exercices: [], devoirs: [] },
+        '2BACPC_SVT': { cours: [], exercices: [], devoirs: [] },
+        '2BACSMA_B': { cours: [], exercices: [], devoirs: [] },
         'VIP': {
-            cours: [
-                { title: 'Cours VIP 1: Résumé avancé et astuces de calcul', url: '#' }
-            ],
-            exercices: [
-                { title: 'Série VIP 1: Exercices corrigés étape par étape', url: '#' }
-            ],
-            devoirs: [
-                { title: 'Devoir VIP 1: Sujet corrigé avec détails', url: '#' }
-            ]
+            cours: [{ title: 'Cours VIP 1: Résumé avancé et astuces de calcul', url: '#' }],
+            exercices: [{ title: 'Série VIP 1: Exercices corrigés étape par étape', url: '#' }],
+            devoirs: [{ title: 'Devoir VIP 1: Sujet corrigé avec détails', url: '#' }]
         }
     };
 
@@ -351,7 +273,10 @@
         currentLevels.forEach(lvl => {
             list.innerHTML += `
                 <div class="level-card" onclick="selectLevel('${lvl.code}')">
-                    <div class="level-info"><span class="level-name">${lvl.name}</span></div>
+                    <div class="card-content">
+                        <div class="level-icon">📄</div>
+                        <div class="level-info"><span class="level-name">${lvl.name}</span></div>
+                    </div>
                     <span class="arrow-icon">›</span>
                 </div>`;
         });
@@ -371,15 +296,24 @@
         const list = document.getElementById('categories-list');
         list.innerHTML = `
             <div class="level-card" onclick="showPdfs('cours', '📙 Cours')">
-                <div class="level-info"><span class="level-name">📙 Cours</span><span class="level-sub">Supports de cours et résumés</span></div>
+                <div class="card-content">
+                    <div class="level-icon">📙</div>
+                    <div class="level-info"><span class="level-name">Cours</span><span class="level-sub">Supports de cours et résumés</span></div>
+                </div>
                 <span class="arrow-icon">›</span>
             </div>
             <div class="level-card" onclick="showPdfs('exercices', '📝 Exercices')">
-                <div class="level-info"><span class="level-name">📝 Exercices</span><span class="level-sub">Séries d'exercices corrigés</span></div>
+                <div class="card-content">
+                    <div class="level-icon">📝</div>
+                    <div class="level-info"><span class="level-name">Exercices</span><span class="level-sub">Séries d'exercices corrigés</span></div>
+                </div>
                 <span class="arrow-icon">›</span>
             </div>
             <div class="level-card" onclick="showPdfs('devoirs', '🏠 Devoir maison')">
-                <div class="level-info"><span class="level-name">🏠 Devoir maison</span><span class="level-sub">Devoirs à la maison</span></div>
+                <div class="card-content">
+                    <div class="level-icon">🏠</div>
+                    <div class="level-info"><span class="level-name">Devoir maison</span><span class="level-sub">Devoirs à la maison</span></div>
+                </div>
                 <span class="arrow-icon">›</span>
             </div>`;
     }
