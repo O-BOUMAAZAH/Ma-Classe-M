@@ -19,29 +19,33 @@
         .welcome-title { font-size: 18px; font-weight: 700; color: #1B2559; text-align: center; margin-bottom: 8px; }
         .welcome-desc { font-size: 13px; color: #707EAE; text-align: center; margin-bottom: 24px; line-height: 1.5; }
         
-        .level-card { border: 1.5px solid #E9EDF7; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+        /* ضبط البطاقات محاذاة لليسار LTR */
+        .level-card { border: 1.5px solid #E9EDF7; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: left; }
         .level-card:hover { border-color: #4318FF; background: #F8F9FF; }
         .vip-card { border: 2px solid #FFD700; background: #FFFDF0; }
         .vip-card:hover { border-color: #E6B800; background: #FFF9D6; }
 
-        .level-info { display: flex; flex-direction: column; align-items: flex-end; text-align: right; width: 100%; }
-        .level-name { font-size: 15px; font-weight: 700; color: #1B2559; }
-        .level-sub { font-size: 12px; color: #A3AED0; margin-top: 2px; }
-        .level-icon { width: 36px; height: 36px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; }
-        .arrow-icon { color: #A3AED0; font-size: 16px; margin-left: 10px; }
+        .level-info { display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; }
+        .level-header { display: flex; align-items: center; justify-content: flex-start; gap: 8px; width: 100%; }
+        .level-name { font-size: 15px; font-weight: 700; color: #1B2559; text-align: left; }
+        .level-sub { font-size: 12px; color: #A3AED0; margin-top: 2px; text-align: left; }
+        .level-icon { width: 36px; height: 36px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; flex-shrink: 0; }
+        .arrow-icon { color: #A3AED0; font-size: 16px; margin-right: 10px; }
 
         .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
         .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
         .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
-        .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: right; font-size: 13px; color: #2B3674; line-height: 1.6; }
+        .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left; font-size: 13px; color: #2B3674; line-height: 1.6; }
         .whatsapp-btn { display: block; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 10px; }
 
-        .item-card { border: 1px solid #E9EDF7; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; }
-        .item-title { font-size: 14px; font-weight: 600; color: #1B2559; }
-        .item-sub { font-size: 12px; color: #A3AED0; }
-        .btn-download { background: #4318FF; color: white; border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; }
+        /* ضبط بطاقة الدرس والمستند محاذاة لليسار */
+        .item-card { border: 1px solid #E9EDF7; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; gap: 12px; }
+        .item-info { text-align: left; flex-grow: 1; }
+        .item-title { font-size: 14px; font-weight: 600; color: #1B2559; text-align: left; line-height: 1.4; }
+        .item-sub { font-size: 12px; color: #A3AED0; text-align: left; margin-top: 4px; }
+        .btn-download { background: #4318FF; color: white; border: none; padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -61,38 +65,38 @@
 
         <!-- Collège -->
         <div class="level-card" onclick="selectCycle('college')">
-            <div style="display: flex; align-items: center;"><span class="arrow-icon">›</span></div>
-            <div class="level-info">
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                <div class="level-icon">🎓</div>
+                <div class="level-info">
                     <span class="level-name">Collège 📚</span>
-                    <div class="level-icon">🎓</div>
+                    <span class="level-sub">1AC · 2AC · 3AC</span>
                 </div>
-                <span class="level-sub">1AC · 2AC · 3AC</span>
             </div>
+            <span class="arrow-icon">›</span>
         </div>
 
-        <!-- Lycée -->
+        <!-- Lycée qualifiant -->
         <div class="level-card" onclick="selectCycle('lycee')">
-            <div style="display: flex; align-items: center;"><span class="arrow-icon">›</span></div>
-            <div class="level-info">
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                <div class="level-icon">📚</div>
+                <div class="level-info">
                     <span class="level-name">Lycée qualifiant 🎓</span>
-                    <div class="level-icon">📚</div>
+                    <span class="level-sub">TC · 1BAC · 2BAC</span>
                 </div>
-                <span class="level-sub">TC · 1BAC · 2BAC</span>
             </div>
+            <span class="arrow-icon">›</span>
         </div>
 
         <!-- Espace VIP -->
         <div class="level-card vip-card" onclick="openVipLock()">
-            <div style="display: flex; align-items: center;"><span class="arrow-icon">🔒</span></div>
-            <div class="level-info">
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 12px; width: 100%;">
+                <div class="level-icon" style="background: #FFE680;">👑</div>
+                <div class="level-info">
                     <span class="level-name" style="color: #B8860B;">Espace VIP / Premium ⭐</span>
-                    <div class="level-icon" style="background: #FFE680;">👑</div>
+                    <span class="level-sub" style="color: #997A00;">Soutien personnalisé & Fichiers exclusifs</span>
                 </div>
-                <span class="level-sub" style="color: #997A00;">Soutien personnalisé & Fichiers exclusifs</span>
             </div>
+            <span class="arrow-icon">🔒</span>
         </div>
     </div>
 
@@ -100,40 +104,40 @@
     <div id="screen-vip-lock" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
         <h2 class="welcome-title">👑 Espace VIP / Premium</h2>
-        <p class="welcome-desc">أدخل القن السري الخاص بالمشتركين للولوج:</p>
+        <p class="welcome-desc">Entrez votre code d'accès pour continuer :</p>
         
-        <input type="password" id="vip-code-input" class="input-code" placeholder="أدخل القن السري هنا...">
-        <button class="btn-unlock" onclick="checkVipCode()">تأكيد القن السري</button>
+        <input type="password" id="vip-code-input" class="input-code" placeholder="Entrez le code d'accès...">
+        <button class="btn-unlock" onclick="checkVipCode()">Valider le code</button>
 
         <a href="https://wa.me/212600000000?text=Bonjour%20Professeur,%20je%20souhaite%20obtenir%20le%20code%20d'accès%20pour%20l'Espace%20VIP." target="_blank" class="whatsapp-btn">
-            💬 طلب القن السري عبر الواتساب
+            💬 Demander le code sur WhatsApp
         </a>
     </div>
 
     <!-- شاشة الحساب البنكي والدروس الحصرية VIP -->
     <div id="screen-vip-secret" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
-        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (مشترك موثوق)</h2>
-        <p class="welcome-desc">إليك معلومات التحويل والملفات الخاصة:</p>
+        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (Membre vérifié)</h2>
+        <p class="welcome-desc">Voici les informations bancaires et les fichiers exclusifs :</p>
         
         <div class="bank-info-box">
-            <strong>💳 معلومات الحساب البنكي (سرية):</strong><br>
-            البنك: <span>CIH Bank / Attijariwafa</span><br>
-            رقم الحساب (RIB): <span>230XXXXXXXXXXXXXXXXXX</span><br>
-            اسم المستفيد: <span>Boumaazah</span>
+            <strong>💳 Informations bancaires (RIB) :</strong><br>
+            Banque : <span>CIH Bank / Attijariwafa</span><br>
+            RIB : <span>230XXXXXXXXXXXXXXXXXX</span><br>
+            Nom : <span>Boumaazah</span>
         </div>
 
         <div class="level-card" onclick="selectVipContent('cours')">
+            <div class="level-info"><span class="level-name">📙 Cours VIP</span><span class="level-sub">Cours exclusifs</span></div>
             <span class="arrow-icon">›</span>
-            <div class="level-info"><span class="level-name">📙 Cours VIP</span><span class="level-sub">الدروس الحصرية</span></div>
         </div>
         <div class="level-card" onclick="selectVipContent('exercices')">
+            <div class="level-info"><span class="level-name">📝 Exercices VIP</span><span class="level-sub">Séries & Exercices VIP</span></div>
             <span class="arrow-icon">›</span>
-            <div class="level-info"><span class="level-name">📝 Exercices VIP</span><span class="level-sub">سلاسل وتمارين VIP</span></div>
         </div>
         <div class="level-card" onclick="selectVipContent('devoirs')">
+            <div class="level-info"><span class="level-name">🏠 Devoir maison VIP</span><span class="level-sub">Devoirs VIP</span></div>
             <span class="arrow-icon">›</span>
-            <div class="level-info"><span class="level-name">🏠 Devoir maison VIP</span><span class="level-sub">فروض منزلية VIP</span></div>
         </div>
     </div>
 
@@ -290,7 +294,7 @@
             devoirs: []
         },
 
-        // Espace VIP (محتوى خاص ومستقل للمشتركين)
+        // Espace VIP
         'VIP': {
             cours: [
                 { title: 'Cours VIP 1: Résumé avancé et astuces de calcul', url: '#' }
@@ -317,11 +321,11 @@
     function checkVipCode() {
         const input = document.getElementById('vip-code-input').value;
         if (input === SECRET_VIP_CODE) {
-            alert('تم تأكيد القن السري بنجاح!');
+            alert('Code valide ! Bienvenue dans l\'Espace VIP.');
             hideAll();
             document.getElementById('screen-vip-secret').classList.remove('hidden');
         } else {
-            alert('القن السري غير صحيح!');
+            alert('Code incorrect ! Veuillez réessayer.');
         }
     }
 
@@ -347,8 +351,8 @@
         currentLevels.forEach(lvl => {
             list.innerHTML += `
                 <div class="level-card" onclick="selectLevel('${lvl.code}')">
-                    <span class="arrow-icon">›</span>
                     <div class="level-info"><span class="level-name">${lvl.name}</span></div>
+                    <span class="arrow-icon">›</span>
                 </div>`;
         });
     }
@@ -362,21 +366,21 @@
         currentLevelKey = code;
         hideAll();
         document.getElementById('screen-categories').classList.remove('hidden');
-        document.getElementById('selected-level-title').innerText = 'Niveau: ' + code;
+        document.getElementById('selected-level-title').innerText = 'Niveau : ' + code;
 
         const list = document.getElementById('categories-list');
         list.innerHTML = `
             <div class="level-card" onclick="showPdfs('cours', '📙 Cours')">
+                <div class="level-info"><span class="level-name">📙 Cours</span><span class="level-sub">Supports de cours et résumés</span></div>
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">📙 Cours</span><span class="level-sub">دروس وشروحات</span></div>
             </div>
             <div class="level-card" onclick="showPdfs('exercices', '📝 Exercices')">
+                <div class="level-info"><span class="level-name">📝 Exercices</span><span class="level-sub">Séries d'exercices corrigés</span></div>
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">📝 Exercices</span><span class="level-sub">سلاسل وتمارين مصححة</span></div>
             </div>
             <div class="level-card" onclick="showPdfs('devoirs', '🏠 Devoir maison')">
+                <div class="level-info"><span class="level-name">🏠 Devoir maison</span><span class="level-sub">Devoirs à la maison</span></div>
                 <span class="arrow-icon">›</span>
-                <div class="level-info"><span class="level-name">🏠 Devoir maison</span><span class="level-sub">الفروض المنزلية</span></div>
             </div>`;
     }
 
@@ -397,8 +401,11 @@
             items.forEach(item => {
                 list.innerHTML += `
                     <div class="item-card">
+                        <div class="item-info">
+                            <div class="item-title">${item.title}</div>
+                            <div class="item-sub">PDF</div>
+                        </div>
                         <a href="${item.url}" target="_blank" class="btn-download">Télécharger</a>
-                        <div style="text-align: right;"><div class="item-title">${item.title}</div><div class="item-sub">PDF</div></div>
                     </div>`;
             });
         } else {
