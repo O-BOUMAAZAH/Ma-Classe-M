@@ -3,50 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes cours de maths - Prof Boumaazah</title>
+    <title>Mes cours de Maths - Prof Boumaazah</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
-        body { background-color: #F4F7FE; color: #2B3674; padding: 20px 10px; display: flex; justify-content: center; }
+        body { background-color: #F0F4F9; color: #2B3674; padding: 20px 10px; display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 520px; background: #FFFFFF; border-radius: 24px; padding: 30px 24px; box-shadow: 0px 10px 30px rgba(112, 144, 176, 0.12); }
         
-        .logo-box { width: 80px; height: 80px; background: #F4F7FE; border-radius: 18px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 36px; border: 1px solid #E9EDF7; }
+        .logo-box { width: 80px; height: 80px; background: #EBF3FE; border-radius: 18px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 36px; border: 1px solid #D8E5FE; }
         .main-title { font-size: 22px; font-weight: 700; color: #1B2559; text-align: center; margin-bottom: 4px; }
-        .sub-title { font-size: 14px; font-weight: 500; color: #4318FF; text-align: center; margin-bottom: 4px; }
-        .slogan { font-size: 13px; color: #A3AED0; text-align: center; margin-bottom: 24px; }
-        .divider { height: 1px; background: #E9EDF7; margin-bottom: 24px; }
+        .sub-title { font-size: 14px; font-weight: 600; color: #2563EB; text-align: center; margin-bottom: 4px; }
+        .slogan { font-size: 13px; color: #64748B; text-align: center; margin-bottom: 24px; }
+        .divider { height: 1px; background: #E2E8F0; margin-bottom: 24px; }
         
         .welcome-title { font-size: 18px; font-weight: 700; color: #1B2559; text-align: center; margin-bottom: 8px; }
-        .welcome-desc { font-size: 13px; color: #707EAE; text-align: center; margin-bottom: 24px; line-height: 1.5; }
+        .welcome-desc { font-size: 13px; color: #64748B; text-align: center; margin-bottom: 24px; line-height: 1.5; }
         
-        /* تنسيق بطاقات الاختيار لضمان محاذاة صحيحة من اليسار لليمين */
-        .level-card { border: 1.5px solid #E9EDF7; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.2s ease; background: #fff; text-align: left; }
-        .level-card:hover { border-color: #4318FF; background: #F8F9FF; }
-        .vip-card { border: 2px solid #FFD700; background: #FFFDF0; }
-        .vip-card:hover { border-color: #E6B800; background: #FFF9D6; }
+        /* البطاقة العامة */
+        .level-card { border: 1.5px solid #E2E8F0; border-radius: 16px; padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.25 ease; background: #fff; text-align: left; }
+        .level-card:hover { transform: translateY(-2px); box-shadow: 0px 4px 12px rgba(0,0,0,0.05); }
+
+        /* ألوان خاصة بالبطاقات */
+        .card-college { border-left: 5px solid #1E88E5; }
+        .card-college:hover { background: #F0F7FF; border-color: #1E88E5; }
+        .card-college .level-icon { background: #E3F2FD; color: #1E88E5; }
+
+        .card-lycee { border-left: 5px solid #7C4DFF; }
+        .card-lycee:hover { background: #F5F0FF; border-color: #7C4DFF; }
+        .card-lycee .level-icon { background: #EDE7F6; color: #7C4DFF; }
+
+        .vip-card { border: 2px solid #FFD54F; border-left: 5px solid #FFB300; background: #FFFDF0; }
+        .vip-card:hover { background: #FFF9C4; border-color: #FFA000; }
+        .vip-card .level-icon { background: #FFF8E1; color: #FFB300; }
 
         .card-content { display: flex; align-items: center; gap: 14px; width: 100%; }
         .level-info { display: flex; flex-direction: column; align-items: flex-start; text-align: left; width: 100%; }
-        .level-name { font-size: 15px; font-weight: 700; color: #1B2559; text-align: left; line-height: 1.4; }
-        .level-sub { font-size: 12px; color: #A3AED0; margin-top: 2px; text-align: left; }
+        .level-name { font-size: 15px; font-weight: 700; color: #1E293B; text-align: left; line-height: 1.4; }
+        .level-sub { font-size: 12px; color: #64748B; margin-top: 2px; text-align: left; }
         
-        .level-icon { width: 40px; height: 40px; border-radius: 10px; background: #F4F7FE; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #4318FF; flex-shrink: 0; }
-        .arrow-icon { color: #A3AED0; font-size: 18px; font-weight: bold; flex-shrink: 0; margin-left: 10px; }
+        .level-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .arrow-icon { color: #94A3B8; font-size: 18px; font-weight: bold; flex-shrink: 0; margin-left: 10px; }
 
-        .btn-back { background: #F4F7FE; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #2B3674; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
+        .btn-back { background: #F1F5F9; border: none; padding: 10px 18px; border-radius: 12px; font-weight: 600; color: #334155; cursor: pointer; margin-bottom: 20px; font-size: 14px; }
         .hidden { display: none; }
         
-        .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #E9EDF7; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
-        .btn-unlock { width: 100%; background: #FFB800; color: #1B2559; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
-        .bank-info-box { background: #F8F9FF; border: 1px dashed #4318FF; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left; font-size: 13px; color: #2B3674; line-height: 1.6; }
+        .input-code { width: 100%; padding: 14px; border-radius: 12px; border: 1.5px solid #CBD5E1; font-size: 16px; text-align: center; margin-bottom: 12px; outline: none; }
+        .btn-unlock { width: 100%; background: #FFB300; color: #1E293B; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 16px; }
+        .bank-info-box { background: #F8FAFC; border: 1.5px dashed #2563EB; border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left; font-size: 13px; color: #1E293B; line-height: 1.6; }
         .whatsapp-btn { display: block; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: 12px; font-weight: 600; font-size: 14px; text-decoration: none; margin-top: 10px; }
 
-        /* تنسيق بطاقات الملفات والدروس */
-        .item-card { border: 1px solid #E9EDF7; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; gap: 12px; }
+        /* بطاقات الملفات والدروس */
+        .item-card { border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; background: #fff; gap: 12px; }
         .item-info { text-align: left; flex-grow: 1; }
-        .item-title { font-size: 14px; font-weight: 600; color: #1B2559; text-align: left; line-height: 1.4; }
-        .item-sub { font-size: 12px; color: #A3AED0; text-align: left; margin-top: 4px; }
-        .btn-download { background: #4318FF; color: white; border: none; padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; flex-shrink: 0; }
+        .item-title { font-size: 14px; font-weight: 600; color: #1E293B; text-align: left; line-height: 1.4; }
+        .item-sub { font-size: 12px; color: #64748B; text-align: left; margin-top: 4px; }
+        .btn-download { background: #2563EB; color: white; border: none; padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+        .btn-download:hover { background: #1D4ED8; }
     </style>
 </head>
 <body>
@@ -57,15 +69,15 @@
     <div id="screen-welcome">
         <div class="logo-box">📖</div>
         <h1 class="main-title">Mes cours de maths</h1>
-        <p class="sub-title">avec le prof Boumaazah</p>
+        <p class="sub-title">avec le Prof Boumaazah</p>
         <p class="slogan">Comprends, pratique et progresse !</p>
         <div class="divider"></div>
 
         <h2 class="welcome-title">Bienvenue !</h2>
-        <p class="welcome-desc">Choisis ton niveau scolaire pour accéder aux cours, aux exercices et aux activités de soutien en mathématiques.</p>
+        <p class="welcome-desc">Choisis ton niveau scolaire pour accéder aux cours, aux exercices et aux activités de soutien en Mathématiques.</p>
 
         <!-- Collège -->
-        <div class="level-card" onclick="selectCycle('college')">
+        <div class="level-card card-college" onclick="selectCycle('college')">
             <div class="card-content">
                 <div class="level-icon">🎓</div>
                 <div class="level-info">
@@ -77,11 +89,11 @@
         </div>
 
         <!-- Lycée qualifiant -->
-        <div class="level-card" onclick="selectCycle('lycee')">
+        <div class="level-card card-lycee" onclick="selectCycle('lycee')">
             <div class="card-content">
                 <div class="level-icon">📚</div>
                 <div class="level-info">
-                    <span class="level-name">Lycée qualifiant</span>
+                    <span class="level-name">Lycée Qualifiant</span>
                     <span class="level-sub">TC · 1BAC · 2BAC</span>
                 </div>
             </div>
@@ -91,13 +103,13 @@
         <!-- Espace VIP -->
         <div class="level-card vip-card" onclick="openVipLock()">
             <div class="card-content">
-                <div class="level-icon" style="background: #FFE680;">👑</div>
+                <div class="level-icon">👑</div>
                 <div class="level-info">
-                    <span class="level-name" style="color: #B8860B;">Espace VIP / Premium ⭐</span>
-                    <span class="level-sub" style="color: #997A00;">Soutien personnalisé & Fichiers exclusifs</span>
+                    <span class="level-name" style="color: #B45309;">Espace VIP / Premium ⭐</span>
+                    <span class="level-sub" style="color: #D97706;">Soutien personnalisé & Fichiers exclusifs</span>
                 </div>
             </div>
-            <span class="arrow-icon" style="color: #E6B800;">🔒</span>
+            <span class="arrow-icon" style="color: #D97706;">🔒</span>
         </div>
     </div>
 
@@ -118,31 +130,31 @@
     <!-- شاشة الحساب البنكي والدروس الحصرية VIP -->
     <div id="screen-vip-secret" class="hidden">
         <button class="btn-back" onclick="showWelcome()">← Retour</button>
-        <h2 class="welcome-title" style="color: #B8860B;">⭐ Espace VIP (Membre vérifié)</h2>
+        <h2 class="welcome-title" style="color: #B45309;">⭐ Espace VIP (Membre vérifié)</h2>
         <p class="welcome-desc">Voici les informations bancaires et les fichiers exclusifs :</p>
         
         <div class="bank-info-box">
             <strong>💳 Informations bancaires (RIB) :</strong><br>
-            Banque : <span>CIH Bank / Attijariwafa</span><br>
+            Banque : <span> Bank</span><br>
             RIB : <span>230XXXXXXXXXXXXXXXXXX</span><br>
             Nom : <span>Boumaazah</span>
         </div>
 
-        <div class="level-card" onclick="selectVipContent('cours')">
+        <div class="level-card vip-card" onclick="selectVipContent('cours')">
             <div class="card-content">
                 <div class="level-icon">📙</div>
                 <div class="level-info"><span class="level-name">Cours VIP</span><span class="level-sub">Cours exclusifs</span></div>
             </div>
             <span class="arrow-icon">›</span>
         </div>
-        <div class="level-card" onclick="selectVipContent('exercices')">
+        <div class="level-card vip-card" onclick="selectVipContent('exercices')">
             <div class="card-content">
                 <div class="level-icon">📝</div>
                 <div class="level-info"><span class="level-name">Exercices VIP</span><span class="level-sub">Séries & Exercices VIP</span></div>
             </div>
             <span class="arrow-icon">›</span>
         </div>
-        <div class="level-card" onclick="selectVipContent('devoirs')">
+        <div class="level-card vip-card" onclick="selectVipContent('devoirs')">
             <div class="card-content">
                 <div class="level-icon">🏠</div>
                 <div class="level-info"><span class="level-name">Devoir maison VIP</span><span class="level-sub">Devoirs VIP</span></div>
@@ -192,6 +204,7 @@
         { code: '1BACL', name: '1BAC - Lettres et sc. humaines' },
         { code: '2BACPC_SVT', name: '2BAC - Sciences PC et SVT' },
         { code: '2BACSMA_B', name: '2BAC - Sciences mathématiques A et B' }
+        { code: '2BACLSH', name: '2BAC - Lettres et sc. humaines' },
     ];
 
     const SECRET_VIP_CODE = "VIP2026";
@@ -203,9 +216,9 @@
         '3AC': { cours: [], exercices: [], devoirs: [] },
         'TCSF': {
             cours: [
-                { title: 'Cours 1: Ensemble des nombres entiers naturels IN et Notions en Arithmétique', url: 'https://drive.google.com/file/d/1-zf9phSVXixHbDRyU2MouNQ0I9vY0bjd/view?usp=drive_link' },
-                { title: 'Cours 2: Les ensembles de nombres', url: '#' },
-                { title: 'Cours 3: Calcul vectoriel dans le plan', url: '#' }
+                { title: 'Cours 1: Ensemble des nombres IN et Notions en Arithmétique', url: 'https://drive.google.com/file/d/1-zf9phSVXixHbDRyU2MouNQ0I9vY0bjd/view?usp=drive_link' },
+                { title: 'Cours 2:Calcul vectoriel dans le Plan', url: 'https://drive.google.com/file/d/1hEm0XZ-CxKlZ6JqyfYUR6cSFWtZDdzDo/view?usp=drive_link' },
+                { title: 'Cours 3:Les ensembles de nombres ', url: '#' }
             ],
             exercices: [{ title: 'Série 1: Arithmétique dans IN', url: '#' }],
             devoirs: [{ title: 'Devoir maison N°1 - TCSF', url: '#' }]
@@ -213,16 +226,39 @@
         'TCLF': { cours: [], exercices: [], devoirs: [] },
         '1BACSEF': {
             cours: [
-                { title: 'Cours 1: Notions en logique', url: 'https://drive.google.com/file/d/1a4pFJMj7XCGpe42opbGPmLvDSPwldslh/view?usp=drive_link' },
-                { title: 'Cours 2: Généralités sur les fonctions', url: '#' }
+                { title: 'Cours 1: Notions de Logique', url: 'https://drive.google.com/file/d/1a4pFJMj7XCGpe42opbGPmLvDSPwldslh/view?usp=drive_link' },
+                { title: 'Cours 2: Généralités sur les fonctions Numériques', url: 'https://drive.google.com/file/d/1v4vUv7be3ecQhCvlevPGCwPfGNETe_UB/view?usp=drive_link' }
             ],
-            exercices: [{ title: 'Série 1: Logique mathématique', url: '#' }],
+            exercices: [
+                { title: 'Série 1:Notions de Logique', url: 'https://drive.google.com/file/d/1wbkkBeOOa0wvR54rcvXYHrQbEvLKEcYG/view?usp=drive_link' },
+                { title: 'Série 2: Généralités sur les fonctions Numériques', url: 'https://drive.google.com/file/d/17ZbZ5DgisO8dzctA26ww3eU8SHf-GZ6-/view?usp=sharing' },
+            ],
             devoirs: [{ title: 'Devoir maison N°1 - 1BAC SE', url: '#' }]
         },
         '1BACSM': { cours: [], exercices: [], devoirs: [] },
-        '1BACL': { cours: [], exercices: [], devoirs: [] },
-        '2BACPC_SVT': { cours: [], exercices: [], devoirs: [] },
+        '1BACL': { 
+            cours: [ { title: 'Cours 1: Notions de Logique', url: '#' },
+                     { title: 'Cours 2: Calcul Numérique', url: 'https://drive.google.com/file/d/1dnEapp_0NCWQ9DunPH5myWD69RZCPV0O/view?usp=drive_link' }
+                   ], 
+            exercices: [], 
+            devoirs: [] },
+        '2BACPC_SVT': {
+            cours: [{ title: 'Cours 1: Continuité d’une fonction Numérique', url: 'https://drive.google.com/file/d/140W1S5cQq7DaBp80JoKA6FK-yczAihK5/view?usp=drive_link' }, 
+                    { title: 'Cours 2: Dérivation – Etude de fonctions', url: 'https://drive.google.com/file/d/1QF02_5gtZmZOn7Qv0p7S2eEjXyofgWO_/view?usp=drive_link' }
+                   ],
+            exercices: [
+                { title: 'Série 1: Continuité d’une fonction Numérique', url: 'https://drive.google.com/file/d/1xjUcCxJYFedr0u6acKFw4qvo9xKDuEzU/view?usp=drive_link' },
+                { title: 'Série 2: Dérivation – Etude de fonctions', url: 'https://drive.google.com/file/d/1AMrxxbMrTCoJxxUjWvHCYuTnXmMqC4n4/view?usp=drive_link' },
+            ], 
+            devoirs: [] 
+        },
         '2BACSMA_B': { cours: [], exercices: [], devoirs: [] },
+        '2BACLSH': {
+            cours: [], 
+            exercices: [], 
+            devoirs: [{ title: ' Devoir Maison N 1', url: ' https://drive.google.com/file/d/1CFhEm8hNWb84mGmTdDdIFGFYO36PT2Hx/view?usp=drive_link' }] 
+        },
+       
         'VIP': {
             cours: [{ title: 'Cours VIP 1: Résumé avancé et astuces de calcul', url: '#' }],
             exercices: [{ title: 'Série VIP 1: Exercices corrigés étape par étape', url: '#' }],
@@ -268,11 +304,12 @@
         list.innerHTML = '';
 
         const currentLevels = (cycle === 'lycee') ? lyceeLevels : collegeLevels;
-        document.getElementById('cycle-title').innerText = (cycle === 'lycee') ? 'Lycée qualifiant' : 'Collège';
+        const cardClass = (cycle === 'lycee') ? 'card-lycee' : 'card-college';
+        document.getElementById('cycle-title').innerText = (cycle === 'lycee') ? 'Lycée Qualifiant' : 'Collège';
 
         currentLevels.forEach(lvl => {
             list.innerHTML += `
-                <div class="level-card" onclick="selectLevel('${lvl.code}')">
+                <div class="level-card ${cardClass}" onclick="selectLevel('${lvl.code}')">
                     <div class="card-content">
                         <div class="level-icon">📄</div>
                         <div class="level-info"><span class="level-name">${lvl.name}</span></div>
@@ -295,21 +332,21 @@
 
         const list = document.getElementById('categories-list');
         list.innerHTML = `
-            <div class="level-card" onclick="showPdfs('cours', '📙 Cours')">
+            <div class="level-card card-college" onclick="showPdfs('cours', '📙 Cours')">
                 <div class="card-content">
                     <div class="level-icon">📙</div>
                     <div class="level-info"><span class="level-name">Cours</span><span class="level-sub">Supports de cours et résumés</span></div>
                 </div>
                 <span class="arrow-icon">›</span>
             </div>
-            <div class="level-card" onclick="showPdfs('exercices', '📝 Exercices')">
+            <div class="level-card card-college" onclick="showPdfs('exercices', '📝 Exercices')">
                 <div class="card-content">
                     <div class="level-icon">📝</div>
                     <div class="level-info"><span class="level-name">Exercices</span><span class="level-sub">Séries d'exercices corrigés</span></div>
                 </div>
                 <span class="arrow-icon">›</span>
             </div>
-            <div class="level-card" onclick="showPdfs('devoirs', '🏠 Devoir maison')">
+            <div class="level-card card-college" onclick="showPdfs('devoirs', '🏠 Devoir Maison')">
                 <div class="card-content">
                     <div class="level-icon">🏠</div>
                     <div class="level-info"><span class="level-name">Devoir maison</span><span class="level-sub">Devoirs à la maison</span></div>
@@ -343,7 +380,7 @@
                     </div>`;
             });
         } else {
-            list.innerHTML = `<p style="text-align:center; color:#A3AED0; padding: 20px;">Aucun document disponible pour le moment.</p>`;
+            list.innerHTML = `<p style="text-align:center; color:#64748B; padding: 20px;">Aucun document disponible pour le moment.</p>`;
         }
     }
 
@@ -358,4 +395,4 @@
 </script>
 
 </body>
-</html>
+</html>تتهم
